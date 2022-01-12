@@ -206,6 +206,7 @@ class WeaviateDocumentStore(BaseDocumentStore):
         score = None
         content = ""
 
+        content_type = None
         id = result.get("id")
         embedding = result.get("vector")
 
@@ -217,7 +218,7 @@ class WeaviateDocumentStore(BaseDocumentStore):
 
         if props.get(self.content_field) is not None:
             # Converting JSON-string to original datatype (string or nested list)
-            content = json.loads(str(props.get(self.content_field)))
+            content = str(props.get(self.content_field))
 
         content_type = None
         if props.get("contenttype") is not None:
